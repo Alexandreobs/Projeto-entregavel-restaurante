@@ -29,7 +29,7 @@ public class DetalhePratoActivity extends AppCompatActivity {
             Drawable drawable = getResources().getDrawable(prato.getFotoPrato());
             fotoDetalhe.setImageDrawable((drawable));
             nomeDrtalhe.setText(prato.getNomePrato());
-            descricaoDetgalhe.setText("\"Vencedor do Prêmio Bom Gourmet em 2014 e 2015, a Conchiglia di gamberi com molho San Marino entra na categoria Melhor Massa em 2016 como hors-concours. A receita foi criada pelo proprietário Arnaldo Zanon há mais de dez anos. A massa em formato de concha é recheada com uma pasta de camarão e queijo. Já o molho San Marino é feito a base de queijo, creme e camarões médios");
+            descricaoDetgalhe.setText(prato.getDetalhePrato());
         }
 
 
@@ -42,4 +42,4 @@ public class DetalhePratoActivity extends AppCompatActivity {
     }
 
 
-    }
+}

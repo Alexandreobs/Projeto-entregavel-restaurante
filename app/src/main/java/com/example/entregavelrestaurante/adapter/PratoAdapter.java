@@ -39,7 +39,7 @@ public class PratoAdapter extends RecyclerView.Adapter<PratoAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull PratoAdapter.ViewHolder holder, int position) {
         final Prato prato = pratoList.get(position);
-        holder.onBind((Prato) prato);
+        holder.onBind(prato);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

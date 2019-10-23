@@ -28,7 +28,7 @@ public class DetalheRestauranteActivity extends AppCompatActivity implements Rec
 
     private RecyclerView recyclerView;
     private PratoAdapter pratoAdapter;
-    List<Prato> prat = new ArrayList<>();
+    private List<Prato> prat = new ArrayList<>();
 
 
 
@@ -38,6 +38,17 @@ public class DetalheRestauranteActivity extends AppCompatActivity implements Rec
         setContentView(R.layout.activity_detalhe_restaurante);
         getSupportActionBar().hide();
 
+        initViews();
+
+
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            RestauranteModelo restauranteModelo = getIntent().getExtras().getParcelable("RESTAURANTE");
+            Drawable drawable = getResources().getDrawable(restauranteModelo.getFotoRest());
+            logoRestaurante.setImageDrawable(drawable);
+            nomeRestaurante.setText(restauranteModelo.getNomeRest());
+        }
+
+
         recyclerView = findViewById(R.id.recyclerViewRestaurante);
 
         pratoAdapter = new PratoAdapter(lisPratos(),  this);
@@ -45,16 +56,6 @@ public class DetalheRestauranteActivity extends AppCompatActivity implements Rec
         recyclerView.setAdapter(pratoAdapter);
 
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-
-
-        initViews();
-
-        if (getIntent() != null && getIntent().getExtras() != null) {
-            RestauranteModelo restauranteModelo = getIntent().getExtras().getParcelable("RESTAURANTE");
-            Drawable drawable = getResources().getDrawable(restauranteModelo.getFotoRest());
-                logoRestaurante.setImageDrawable(drawable);
-                nomeRestaurante.setText(restauranteModelo.getNomeRest());
-        }
 
     }
 
@@ -64,26 +65,29 @@ public class DetalheRestauranteActivity extends AppCompatActivity implements Rec
         nomeRestaurante = findViewById(R.id.textViewRestaurante);
     }
 
-    public List<Prato> lisPratos(){
+    private List<Prato> lisPratos(){
+
+        if (nomeRestaurante.getText().toString().equals("La Cascada Steake House")) {
+            prat.add(new Prato("Hamburger", R.drawable.hamburger, "240g de hambúrguer de picanha no pão tipo brioche, pétalas de Bloomin’ Onion, a nossa incrível cebola empanada, smoked mayo, molho Flame, queijo tipo emmenthal e bacon."));
+            prat.add(new Prato("Hamburger", R.drawable.hamburger, "240g de hambúrguer de picanha no pão tipo brioche, pétalas de Bloomin’ Onion, a nossa incrível cebola empanada, smoked mayo, molho Flame, queijo tipo emmenthal e bacon."));
+            prat.add(new Prato("Hamburger", R.drawable.hamburger, "240g de hambúrguer de picanha no pão tipo brioche, pétalas de Bloomin’ Onion, a nossa incrível cebola empanada, smoked mayo, molho Flame, queijo tipo emmenthal e bacon."));
+
+        } else if (nomeRestaurante.getText().toString().equals("Toscana Restaurant")){
+            prat.add(new Prato("Sobre Mesa", R.drawable.sobremesa, "Nosso brownie exclusivo e quentinho com sorvete de baunilha e deliciosa calda de chocolate preparada diariamente no Outback. Finalizado com chantilly e raspas de chocolate. *Contém nozes ou derivado de nozes."));
+            prat.add(new Prato("Sobre Mesa", R.drawable.sobremesa, "Nosso brownie exclusivo e quentinho com sorvete de baunilha e deliciosa calda de chocolate preparada diariamente no Outback. Finalizado com chantilly e raspas de chocolate. *Contém nozes ou derivado de nozes."));
+            prat.add(new Prato("Sobre Mesa", R.drawable.sobremesa, "Nosso brownie exclusivo e quentinho com sorvete de baunilha e deliciosa calda de chocolate preparada diariamente no Outback. Finalizado com chantilly e raspas de chocolate. *Contém nozes ou derivado de nozes."));
 
 
+        } else if (nomeRestaurante.getText().toString().equals("Restaurante requinte")) {
+            prat.add(new Prato("Contra file", R.drawable.pratocomida, "Um steak especial: nosso clássico miolo de alcatra com sabor acentuado pelos temperos do Outback. Preparado na chapa no ponto que você preferir. *Produto de 225g não disponível nos restaurantes de Ribeirão Preto, Sorocaba e S. José do Rio Preto"));
+            prat.add(new Prato("Contra file", R.drawable.pratocomida, "Um steak especial: nosso clássico miolo de alcatra com sabor acentuado pelos temperos do Outback. Preparado na chapa no ponto que você preferir. *Produto de 225g não disponível nos restaurantes de Ribeirão Preto, Sorocaba e S. José do Rio Preto"));
+            prat.add(new Prato("Contra file", R.drawable.pratocomida, "Um steak especial: nosso clássico miolo de alcatra com sabor acentuado pelos temperos do Outback. Preparado na chapa no ponto que você preferir. *Produto de 225g não disponível nos restaurantes de Ribeirão Preto, Sorocaba e S. José do Rio Preto"));
 
-        prat.add(new Prato("Hamburger",R.drawable.hamburger));
-        prat.add(new Prato("Sobre Mesa",R.drawable.sobremesa));
-        prat.add(new Prato("Hamburger",R.drawable.hamburger));
-        prat.add(new Prato("Contra file",R.drawable.pratocomida));
-        prat.add(new Prato("Hamburger",R.drawable.hamburger));
-        prat.add(new Prato("Contra File",R.drawable.pratocomida));
-        prat.add(new Prato("Sobre Mesa",R.drawable.sobremesa));
-        prat.add(new Prato("Contra file",R.drawable.pratocomida));
-        prat.add(new Prato("Hamburger",R.drawable.hamburger));
-        prat.add(new Prato("Contra file",R.drawable.pratocomida));
-        prat.add(new Prato("Sobre Mesa",R.drawable.sobremesa));
-        prat.add(new Prato("Contra file",R.drawable.pratocomida));
-        prat.add(new Prato("Sobre Mesa",R.drawable.sobremesa));
-        prat.add(new Prato("Hamburger",R.drawable.hamburger));
-        prat.add(new Prato("Sobre Mesa",R.drawable.sobremesa));
-        prat.add(new Prato("Hamburger",R.drawable.hamburger));
+        } else if (nomeRestaurante.getText().toString().equals("Bonafide Restaurant")) {
+            prat.add(new Prato("Hamburger", R.drawable.hamburger, "240g de hambúrguer de picanha no pão tipo brioche, pétalas de Bloomin’ Onion, a nossa incrível cebola empanada, smoked mayo, molho Flame, queijo tipo emmenthal e bacon."));
+            prat.add(new Prato("Sobre Mesa", R.drawable.sobremesa, "Nosso brownie exclusivo e quentinho com sorvete de baunilha e deliciosa calda de chocolate preparada diariamente no Outback. Finalizado com chantilly e raspas de chocolate. *Contém nozes ou derivado de nozes."));
+            prat.add(new Prato("Contra file", R.drawable.pratocomida, "Um steak especial: nosso clássico miolo de alcatra com sabor acentuado pelos temperos do Outback. Preparado na chapa no ponto que você preferir. *Produto de 225g não disponível nos restaurantes de Ribeirão Preto, Sorocaba e S. José do Rio Preto"));
+        }
 
         return prat;
     }

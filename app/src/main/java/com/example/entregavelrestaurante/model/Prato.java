@@ -18,9 +18,10 @@ public class Prato implements Parcelable {
         DetalhePrato = detalhePrato;
     }
 
-    public Prato(String nomePrato, int fotoPrato) {
+    public Prato(String nomePrato, int fotoPrato, String detalhePrato) {
         this.nomePrato = nomePrato;
-        FotoPrato = fotoPrato;
+        this.FotoPrato = fotoPrato;
+        this.DetalhePrato = detalhePrato;
     }
 
     protected Prato(Parcel in) {
